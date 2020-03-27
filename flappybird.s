@@ -14,6 +14,7 @@
 	backgroundColour:.word	0x5f87ff	# blue
 	birdColour:	.word	0xffff00	# yellow
 	pipeColour:	.word	0x00ff00	# green
+	grayColour:	.word	0x584b4b	# gray
 	
 	# Score variables
 	score:		.word	0
@@ -21,11 +22,11 @@
 	
 	# Bird Settings
 	birdSpeed:	.word	8	# inreases as game continues
-	birdX:		.word	0
-	birdY:		.word	0
+	birdX:		.word	5
+	birdY:		.word	8
 	
 	# Global Settings
-	gravity:	.word	1
+	gravity:	.word	-1
 	dayTime:	.word	0	# either 0 or 1
 	
 	# Start
@@ -59,21 +60,7 @@ Init:
 	lw $a1, birdY
 	jal GetCoordinates
 	move $a0, $v0
-	lw $a1, birdColour
-	jal DrawPixel
-	
-GravityDraw: # Fix it (doe snot work)
-	lw $t0, birdX
-	lw $t1, birdY
-	lw $t3, gravity($zero)
-	add $t1, $t1, $t3
-	add $a0, $t0, $zero
-	add $a1, $t1, $zero
-	jal GetCoordinates
-	add $a0, $v0, $zero
-	lw $a1, birdColour
-	jal DrawPixel
-	j GravityDraw
+	jal DrawBird
 	
 GetCoordinates:
 	lw $v0, screenLength
@@ -82,10 +69,22 @@ GetCoordinates:
 	mul $v0, $v0, 4		# multiply by 4
 	add $v0, $v0, $gp	# add global pointerfrom bitmap display
 	jr $ra
-	
+
+DrawBird:
+	lw $t1, birdColour
+	lw $t2, grayColour
+        sw $t1, 4($a0)
+	sw $t1, 8($a0)
+	sw $t2, 128($a0)
+	sw $t2, 132($a0)
+	sw $t2, 136($a0)
+	sw $t2, 140($a0)
+	jr $ra
+
 DrawPixel:
 	sw $a1, ($a0)
 	jr $ra	
+
 
 Exit:
 	li $v0, 10 # terminate the program gracefully
