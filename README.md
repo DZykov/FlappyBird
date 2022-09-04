@@ -5,11 +5,8 @@ University project CSC258 (Computer Organization) - flappy bird in assembly. Thi
 ## Index
    - [Demo](#Demo "Goto Demo")
    - [Game Features](#Game-Features "Goto Game-Features")
+   - [Instalation](#Instalation "Goto Instalation")
    - [Controls](#Controls "Goto Controls")
-   - [Contributing](#Contributing "Goto Contributing")
-      - [Original Contributers](#Contributing "Goto Contributing")
-      - [Future Contributers](#Contributing "Goto Contributing")
-      - [Software Community Contributers](#Contributing "Goto Contributing")
    - [To-Do and Issues](#To-Do-and-Issues "Goto ToDo-and-Issues")
 
 ## Demo
@@ -24,3 +21,18 @@ https://user-images.githubusercontent.com/38252337/188291381-6f47898f-d900-4b63-
 - More realistic physics
 - Score
 - Level
+
+## Instalation
+1. Install Mars 4.5 (http://courses.missouristate.edu/KenVollmar/MARS/download.html)
+2. Add flappybird.c to Mars 
+3. Add display 0x10008000 ($gp) with 256x256
+4. Add keayboard
+5. Press "Assemble", then "Run"
+
+## Controls
+
+There is only one button, which is active - f/F. Make sure that focused window is keayboard input. Press f/F, when you want to jump.
+
+## To-Do and Issues
+
+[x] On some operation systems there are no score and no restart button.
